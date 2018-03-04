@@ -1,0 +1,10 @@
+{
+  "name": "emst",
+  "version": "0.0.0",
+  "description": "generates a euclidean minimum spanning tree from a given graph",
+  "author": "semibran (Brandon Semilla)",
+  "repository": "semibran/emst",
+  "license": "MIT",
+  "main": "lib/emst.js",
+  "keywords": []
+}
