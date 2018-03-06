@@ -1,2 +1,16 @@
-*{margin:0;padding:0;box-sizing:border-box}body,html{height:100%}body{background:#000;overflow:hidden}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%; }
+
+body {
+  background: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 /*# sourceMappingURL=style.css.map */
