@@ -1,9 +1,7 @@
 import span from "../../lib/graph-mst"
 import euclidean from "euclidean"
 
-const width = window.innerWidth
-const height = window.innerHeight
-
+let size = Math.min(window.innerWidth, window.innerHeight)
 let graph = {
   edges: [],
   nodes: new Array(512)
@@ -33,7 +31,6 @@ let tree = span(graph)
 let state = {
   graph: tree,
   animation: {
-    time: 0,
     phase: "spawn",
     nodes: [],
     edges: [],
@@ -41,26 +38,21 @@ let state = {
     history: []
   },
   viewport: {
-    scale: Math.min(width, height) / 2.5,
-    halfsize: [ width / 2, height / 2 ],
+    scale: size / 2.5,
+    halfsize: [ size / 2, size / 2 ],
     position: [ 0, 0 ]
   }
 }
 
-let canvas = document.createElement("canvas")
-let context = canvas.getContext("2d")
-canvas.width = width
-canvas.height = height
-document.body.appendChild(canvas)
+let context = render(state)
+document.body.appendChild(context.canvas)
 requestAnimationFrame(loop)
 
 function loop() {
-  context.clearRect(0, 0, canvas.width, canvas.height)
-  let { graph, animation, viewport } = state
-  const scale = (x, i) => x * viewport.scale + viewport.halfsize[i]
+  let { graph, animation } = state
   let phase = animation[animation.phase]
   if (animation.phase === "spawn") {
-    if (animation.time < graph.nodes.length) {
+    if (animation.nodes.length < graph.nodes.length) {
       animation.nodes.push([ 0, 0 ])
     }
     let farthest = 0
@@ -148,6 +140,29 @@ function loop() {
     }
   }
 
+  render(state, context)
+
+  if (animation.phase !== "done") {
+    console.log(state)
+    requestAnimationFrame(loop)
+  }
+}
+
+function render(state, context) {
+  let { animation, viewport } = state
+  let scale = adjust.bind(null, viewport)
+  let canvas = null
+  if (!context) {
+    canvas = document.createElement("canvas")
+    context = canvas.getContext("2d")
+    canvas.width = viewport.halfsize[0] * 2
+    canvas.height = viewport.halfsize[1] * 2
+  } else {
+    canvas = context.canvas
+  }
+
+  context.clearRect(0, 0, canvas.width, canvas.height)
+
   for (let line of animation.lines) {
     context.strokeStyle = "gray"
     context.beginPath()
@@ -181,8 +196,9 @@ function loop() {
     context.fill()
   }
 
-  if (animation.phase !== "done") {
-    animation.time++
-    requestAnimationFrame(loop)
-  }
+  return context
+}
+
+function adjust(viewport, x, i) {
+  return x * viewport.scale + viewport.halfsize[i] - viewport.position[i]
 }
