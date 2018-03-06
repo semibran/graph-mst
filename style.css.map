@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "style.css",
+	"sources": [
+		"../src/style.scss"
+	],
+	"sourcesContent": [
+		"* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml, body {\n  height: 100%;\n}\n\nbody {\n  background: black;\n  overflow: hidden;\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU,GACvB;;AAED,AAAA,IAAI,EAAE,AAAA,IAAI,CAAC;EACT,MAAM,EAAE,IAAI,GACb;;AAED,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,QAAQ,EAAE,MAAM,GACjB"
+}
