@@ -6,7 +6,7 @@ const height = window.innerHeight
 
 let graph = {
   edges: [],
-  nodes: new Array(128)
+  nodes: new Array(512)
     .fill()
     .map(_ => {
       let direction = Math.random() * 2 * Math.PI
