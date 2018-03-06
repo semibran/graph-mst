@@ -1,10 +1,10 @@
 {
-  "name": "emst",
+  "name": "graph-mst",
   "version": "0.0.0",
-  "description": "generates a euclidean minimum spanning tree from a given graph",
+  "description": "generates a minimum spanning tree from a weighted graph",
   "author": "semibran (Brandon Semilla)",
-  "repository": "semibran/emst",
   "license": "MIT",
-  "main": "lib/emst.js",
+  "repository": "semibran/graph-mst",
+  "main": "lib/graph-mst.js",
   "keywords": []
 }
