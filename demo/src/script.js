@@ -143,7 +143,6 @@ function loop() {
   render(state, context)
 
   if (animation.phase !== "done") {
-    console.log(state)
     requestAnimationFrame(loop)
   }
 }
